@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Trabalho2WEBMVC.Models
 {
-    enum Cor { Preto, Colorido }
+    enum Cores { Preto, Colorido }
 
     [Table("Tonners")]
     public class Tonner
@@ -17,8 +17,8 @@ namespace Trabalho2WEBMVC.Models
         [Display(Name = "Descricao")]
         public string descricao { get; set; }
 
-        [Display(Name = "Cor")]
-        public int Cor { get; set; }
+        [Display(Name = "Cores")]
+        public int Cores { get; set; }
 
         [Display(Name = "Impressoras")]
         public int impressorasID { get; set; }
