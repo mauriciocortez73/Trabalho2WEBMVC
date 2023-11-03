@@ -15,6 +15,11 @@ namespace Trabalho2WEBMVC.Models
         [Display(Name = "Nome")]
         public string nome { get; set; }
 
+        [Required(ErrorMessage = "Campo email é obrigatório.")]
+        [DataType(DataType.EmailAddress, ErrorMessage = "email invalido")]
+        [Display(Name = "Email")]
+        public string email { get; set; }
+
         [Display(Name = "Unidades")]
         public int unidadesID { get; set; }
         [ForeignKey("unidadesID")]

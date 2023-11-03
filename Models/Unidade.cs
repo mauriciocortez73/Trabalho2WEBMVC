@@ -14,5 +14,10 @@ namespace Trabalho2WEBMVC.Models
         [StringLength(35)]
         [Display(Name = "Descricao")]
         public string descricao { get; set; }
+        //
+        [Required(ErrorMessage = "Campo CNPJ é obrigatório...")]
+        [StringLength(14)]
+        [Display(Name = "CNPJ")]
+        public int cnpj { get; set; }
     }
 }
