@@ -19,10 +19,5 @@ namespace Trabalho2WEBMVC.Models
 
         [Display(Name = "Cores")]
         public int Cores { get; set; }
-
-        [Display(Name = "Impressoras")]
-        public int impressorasID { get; set; }
-        [ForeignKey("impressorasID")]
-        public Impressora impressoras { get; set; }
     }
 }
