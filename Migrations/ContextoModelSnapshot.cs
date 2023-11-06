@@ -148,9 +148,10 @@ namespace Trabalho2WEBMVC.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
 
-                    b.Property<int>("cnpj")
-                        .HasMaxLength(14)
-                        .HasColumnType("int");
+                    b.Property<string>("cnpj")
+                        .IsRequired()
+                        .HasMaxLength(18)
+                        .HasColumnType("nvarchar(18)");
 
                     b.Property<string>("descricao")
                         .IsRequired()

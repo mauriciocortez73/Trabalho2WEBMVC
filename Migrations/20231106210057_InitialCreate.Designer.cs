@@ -11,7 +11,7 @@ using Trabalho2WEBMVC.Models;
 namespace Trabalho2WEBMVC.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20231103181342_InitialCreate")]
+    [Migration("20231106210057_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -151,9 +151,10 @@ namespace Trabalho2WEBMVC.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
 
-                    b.Property<int>("cnpj")
-                        .HasMaxLength(14)
-                        .HasColumnType("int");
+                    b.Property<string>("cnpj")
+                        .IsRequired()
+                        .HasMaxLength(18)
+                        .HasColumnType("nvarchar(18)");
 
                     b.Property<string>("descricao")
                         .IsRequired()
