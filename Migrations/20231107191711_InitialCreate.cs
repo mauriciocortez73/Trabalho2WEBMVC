@@ -38,6 +38,20 @@ namespace Trabalho2WEBMVC.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Tonners",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    descricao = table.Column<string>(type: "nvarchar(35)", maxLength: 35, nullable: false),
+                    cor = table.Column<string>(type: "nvarchar(35)", maxLength: 35, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Tonners", x => x.id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Unidades",
                 columns: table => new
                 {
@@ -115,6 +129,9 @@ namespace Trabalho2WEBMVC.Migrations
 
             migrationBuilder.DropTable(
                 name: "Pedidos");
+
+            migrationBuilder.DropTable(
+                name: "Tonners");
 
             migrationBuilder.DropTable(
                 name: "Unidades");

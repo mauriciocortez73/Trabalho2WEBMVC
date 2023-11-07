@@ -74,5 +74,26 @@ namespace Trabalho2WEBMVC.Controllers
 
             return View(contexto.Impressoras.OrderBy(o => o.descricao).ToList());
         }
+
+        public IActionResult gerarTonners()
+        {
+            contexto.Database.ExecuteSqlRaw("delete from Tonners");
+            contexto.Database.ExecuteSqlRaw("DBCC CHECKIDENT ('Tonners', RESEED, 0)");
+            Random randNum = new Random();
+
+            string[] vTon = { "SP3710X", "505A", "E260", "CF226X", "CF258X", "D201L" };
+            string[] vCores = { "Preto", "Azul", "Amarelo", "Vermelho", "Magenta", "Ciano" };
+
+            for (int i = 0; i < 5; i++)
+            {
+                Tonner tonner = new Tonner();
+                tonner.descricao = vTon[i];
+                tonner.cor = vCores[i];
+                contexto.Tonners.Add(tonner);
+            }
+            contexto.SaveChanges();
+
+            return View(contexto.Tonners.OrderBy(o => o.descricao).ToList());
+        }
     }
 }

@@ -12,5 +12,6 @@ namespace Trabalho2WEBMVC.Models
         public DbSet<Cliente> Clientes { get; set; }
         public DbSet<Estoque> Estoques { get; set; }
         public DbSet<Pedido> Pedidos { get; set; }
+        public DbSet<Tonner> Tonners { get; set; }
     }
 }

@@ -11,7 +11,7 @@ using Trabalho2WEBMVC.Models;
 namespace Trabalho2WEBMVC.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20231107190528_InitialCreate")]
+    [Migration("20231107191711_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -110,6 +110,29 @@ namespace Trabalho2WEBMVC.Migrations
                     b.HasIndex("impressorasID");
 
                     b.ToTable("Pedidos");
+                });
+
+            modelBuilder.Entity("Trabalho2WEBMVC.Models.Tonner", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
+
+                    b.Property<string>("cor")
+                        .IsRequired()
+                        .HasMaxLength(35)
+                        .HasColumnType("nvarchar(35)");
+
+                    b.Property<string>("descricao")
+                        .IsRequired()
+                        .HasMaxLength(35)
+                        .HasColumnType("nvarchar(35)");
+
+                    b.HasKey("id");
+
+                    b.ToTable("Tonners");
                 });
 
             modelBuilder.Entity("Trabalho2WEBMVC.Models.Unidade", b =>
