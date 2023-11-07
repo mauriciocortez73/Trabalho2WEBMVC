@@ -3,7 +3,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Trabalho2WEBMVC.Models
 {
-    enum Cores { Preto, Colorido }
 
     [Table("Tonners")]
     public class Tonner
