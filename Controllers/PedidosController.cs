@@ -21,7 +21,7 @@ namespace Trabalho2WEBMVC.Controllers
         // GET: Pedidos
         public async Task<IActionResult> Index()
         {
-            var contexto = _context.Pedidos.Include(p => p.impressoras).Include(p => p.tonners);
+            var contexto = _context.Pedidos.Include(p => p.impressoras);
             return View(await contexto.ToListAsync());
         }
 
@@ -35,7 +35,6 @@ namespace Trabalho2WEBMVC.Controllers
 
             var pedido = await _context.Pedidos
                 .Include(p => p.impressoras)
-                .Include(p => p.tonners)
                 .FirstOrDefaultAsync(m => m.id == id);
             if (pedido == null)
             {
@@ -49,7 +48,6 @@ namespace Trabalho2WEBMVC.Controllers
         public IActionResult Create()
         {
             ViewData["impressorasID"] = new SelectList(_context.Impressoras, "id", "descricao");
-            ViewData["tonnersID"] = new SelectList(_context.Tonners, "id", "descricao");
             return View();
         }
 
@@ -58,7 +56,7 @@ namespace Trabalho2WEBMVC.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id,tonnersID,impressorasID,quantidade,valor")] Pedido pedido)
+        public async Task<IActionResult> Create([Bind("id,impressorasID,quantidade,valor")] Pedido pedido)
         {
             if (ModelState.IsValid)
             {
@@ -67,7 +65,6 @@ namespace Trabalho2WEBMVC.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["impressorasID"] = new SelectList(_context.Impressoras, "id", "descricao", pedido.impressorasID);
-            ViewData["tonnersID"] = new SelectList(_context.Tonners, "id", "descricao", pedido.tonnersID);
             return View(pedido);
         }
 
@@ -85,7 +82,6 @@ namespace Trabalho2WEBMVC.Controllers
                 return NotFound();
             }
             ViewData["impressorasID"] = new SelectList(_context.Impressoras, "id", "descricao", pedido.impressorasID);
-            ViewData["tonnersID"] = new SelectList(_context.Tonners, "id", "descricao", pedido.tonnersID);
             return View(pedido);
         }
 
@@ -94,7 +90,7 @@ namespace Trabalho2WEBMVC.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("id,tonnersID,impressorasID,quantidade,valor")] Pedido pedido)
+        public async Task<IActionResult> Edit(int id, [Bind("id,impressorasID,quantidade,valor")] Pedido pedido)
         {
             if (id != pedido.id)
             {
@@ -122,7 +118,6 @@ namespace Trabalho2WEBMVC.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["impressorasID"] = new SelectList(_context.Impressoras, "id", "descricao", pedido.impressorasID);
-            ViewData["tonnersID"] = new SelectList(_context.Tonners, "id", "descricao", pedido.tonnersID);
             return View(pedido);
         }
 
@@ -136,7 +131,6 @@ namespace Trabalho2WEBMVC.Controllers
 
             var pedido = await _context.Pedidos
                 .Include(p => p.impressoras)
-                .Include(p => p.tonners)
                 .FirstOrDefaultAsync(m => m.id == id);
             if (pedido == null)
             {

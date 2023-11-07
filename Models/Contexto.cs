@@ -10,7 +10,6 @@ namespace Trabalho2WEBMVC.Models
         public DbSet<Impressora> Impressoras { get; set; }
         public DbSet<Unidade> Unidades { get; set; }
         public DbSet<Cliente> Clientes { get; set; }
-        public DbSet<Tonner> Tonners { get; set; }
         public DbSet<Estoque> Estoques { get; set; }
         public DbSet<Pedido> Pedidos { get; set; }
     }

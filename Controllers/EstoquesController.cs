@@ -21,8 +21,7 @@ namespace Trabalho2WEBMVC.Controllers
         // GET: Estoques
         public async Task<IActionResult> Index()
         {
-            var contexto = _context.Estoques.Include(e => e.tonners);
-            return View(await contexto.ToListAsync());
+              return View(await _context.Estoques.ToListAsync());
         }
 
         // GET: Estoques/Details/5
@@ -34,7 +33,6 @@ namespace Trabalho2WEBMVC.Controllers
             }
 
             var estoque = await _context.Estoques
-                .Include(e => e.tonners)
                 .FirstOrDefaultAsync(m => m.id == id);
             if (estoque == null)
             {
@@ -47,7 +45,6 @@ namespace Trabalho2WEBMVC.Controllers
         // GET: Estoques/Create
         public IActionResult Create()
         {
-            ViewData["tonnersID"] = new SelectList(_context.Tonners, "id", "descricao");
             return View();
         }
 
@@ -56,7 +53,7 @@ namespace Trabalho2WEBMVC.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id,tonnersID,quantidade")] Estoque estoque)
+        public async Task<IActionResult> Create([Bind("id,quantidade")] Estoque estoque)
         {
             if (ModelState.IsValid)
             {
@@ -64,7 +61,6 @@ namespace Trabalho2WEBMVC.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["tonnersID"] = new SelectList(_context.Tonners, "id", "descricao", estoque.tonnersID);
             return View(estoque);
         }
 
@@ -81,7 +77,6 @@ namespace Trabalho2WEBMVC.Controllers
             {
                 return NotFound();
             }
-            ViewData["tonnersID"] = new SelectList(_context.Tonners, "id", "descricao", estoque.tonnersID);
             return View(estoque);
         }
 
@@ -90,7 +85,7 @@ namespace Trabalho2WEBMVC.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("id,tonnersID,quantidade")] Estoque estoque)
+        public async Task<IActionResult> Edit(int id, [Bind("id,quantidade")] Estoque estoque)
         {
             if (id != estoque.id)
             {
@@ -117,7 +112,6 @@ namespace Trabalho2WEBMVC.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["tonnersID"] = new SelectList(_context.Tonners, "id", "descricao", estoque.tonnersID);
             return View(estoque);
         }
 
@@ -130,7 +124,6 @@ namespace Trabalho2WEBMVC.Controllers
             }
 
             var estoque = await _context.Estoques
-                .Include(e => e.tonners)
                 .FirstOrDefaultAsync(m => m.id == id);
             if (estoque == null)
             {

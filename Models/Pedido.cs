@@ -10,12 +10,6 @@ namespace Trabalho2WEBMVC.Models
         [Display(Name = "ID")]
         public int id { get; set; }
 
-        [Display(Name = "Tonners")]
-        public int tonnersID { get; set; }
-        [ForeignKey("tonnersID")]
-        public Tonner tonners { get; set; }
-        //
-
         [Display(Name = "Impressoras")]
         public int impressorasID { get; set; }
         [ForeignKey("impressorasID")]

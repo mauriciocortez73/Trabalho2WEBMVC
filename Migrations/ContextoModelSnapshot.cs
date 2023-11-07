@@ -59,12 +59,7 @@ namespace Trabalho2WEBMVC.Migrations
                     b.Property<int>("quantidade")
                         .HasColumnType("int");
 
-                    b.Property<int>("tonnersID")
-                        .HasColumnType("int");
-
                     b.HasKey("id");
-
-                    b.HasIndex("tonnersID");
 
                     b.ToTable("Estoques");
                 });
@@ -104,9 +99,6 @@ namespace Trabalho2WEBMVC.Migrations
                     b.Property<int>("quantidade")
                         .HasColumnType("int");
 
-                    b.Property<int>("tonnersID")
-                        .HasColumnType("int");
-
                     b.Property<float>("valor")
                         .HasColumnType("real");
 
@@ -114,32 +106,7 @@ namespace Trabalho2WEBMVC.Migrations
 
                     b.HasIndex("impressorasID");
 
-                    b.HasIndex("tonnersID");
-
                     b.ToTable("Pedidos");
-                });
-
-            modelBuilder.Entity("Trabalho2WEBMVC.Models.Tonner", b =>
-                {
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
-
-                    b.Property<string>("cor")
-                        .IsRequired()
-                        .HasMaxLength(35)
-                        .HasColumnType("nvarchar(35)");
-
-                    b.Property<string>("descricao")
-                        .IsRequired()
-                        .HasMaxLength(35)
-                        .HasColumnType("nvarchar(35)");
-
-                    b.HasKey("id");
-
-                    b.ToTable("Tonners");
                 });
 
             modelBuilder.Entity("Trabalho2WEBMVC.Models.Unidade", b =>
@@ -176,17 +143,6 @@ namespace Trabalho2WEBMVC.Migrations
                     b.Navigation("unidades");
                 });
 
-            modelBuilder.Entity("Trabalho2WEBMVC.Models.Estoque", b =>
-                {
-                    b.HasOne("Trabalho2WEBMVC.Models.Tonner", "tonners")
-                        .WithMany()
-                        .HasForeignKey("tonnersID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("tonners");
-                });
-
             modelBuilder.Entity("Trabalho2WEBMVC.Models.Pedido", b =>
                 {
                     b.HasOne("Trabalho2WEBMVC.Models.Impressora", "impressoras")
@@ -195,15 +151,7 @@ namespace Trabalho2WEBMVC.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Trabalho2WEBMVC.Models.Tonner", "tonners")
-                        .WithMany()
-                        .HasForeignKey("tonnersID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("impressoras");
-
-                    b.Navigation("tonners");
                 });
 #pragma warning restore 612, 618
         }
