@@ -54,5 +54,46 @@ namespace Trabalho2WEBMVC.Controllers
 
             return View(contexto.Unidades.OrderBy(o => o.descricao).ToList());
         }
+
+        public IActionResult gerarImpressoras()
+        {
+            contexto.Database.ExecuteSqlRaw("delete from Impressoras");
+            contexto.Database.ExecuteSqlRaw("DBCC CHECKIDENT ('Impressoras', RESEED, 0)");
+            Random randNum = new Random();
+
+            string[] vImp = { "Ricoh 3710", "Ricoh 320F", "HP2035", "Lexmark E260", "Lexmark E360", "HP M400", "HP M402dne", "HP M402dn", "HP M403dn", "HPM404", "Samsung M4080FX" };
+
+            for (int i = 0; i < 5; i++)
+            {
+                Impressora impressora = new Impressora();
+                impressora.descricao = vImp[i];
+                impressora.patrimonio = randNum.Next(100000, 999999);
+                contexto.Impressoras.Add(impressora);
+            }
+            contexto.SaveChanges();
+
+            return View(contexto.Impressoras.OrderBy(o => o.descricao).ToList());
+        }
+
+        public IActionResult gerarTonners()
+        {
+            contexto.Database.ExecuteSqlRaw("delete from Tonners");
+            contexto.Database.ExecuteSqlRaw("DBCC CHECKIDENT ('Tonners', RESEED, 0)");
+            Random randNum = new Random();
+
+            string[] vTon = { "SP3710X", "505A", "E260", "CF226X", "CF258X", "D201L" };
+            string[] vCores = { "Preto", "Azul", "Amarelo", "Vermelho", "Magenta", "Ciano" };
+
+            for (int i = 0; i < 5; i++)
+            {
+                Tonner tonner = new Tonner();
+                tonner.descricao = vTon[i];
+                tonner.cores = vCores[i];
+                contexto.Tonners.Add(tonner);
+            }
+            contexto.SaveChanges();
+
+            return View(contexto.Tonners.OrderBy(o => o.descricao).ToList());
+        }
     }
 }
