@@ -16,9 +16,9 @@ namespace Trabalho2WEBMVC.Models
         [Display(Name = "Descricao")]
         public string descricao { get; set; }
 
-        [Required(ErrorMessage = "Campo Cores é obrigatório...")]
-        [StringLength(15)]
-        [Display(Name = "Cores")]
-        public string cores { get; set; }
+        [Required(ErrorMessage = "Campo Cor é obrigatório...")]
+        [StringLength(35)]
+        [Display(Name = "Cor")]
+        public string cor { get; set; }
     }
 }
